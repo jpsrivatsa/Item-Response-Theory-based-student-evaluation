@@ -1,0 +1,256 @@
+<html lang="en">
+    
+
+
+<head>
+    <meta charset="utf-8">
+    <title>IRT - Teacher Module</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Favicon -->
+
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+
+
+<link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
+<link href="{{ url_for('static', filename='lib/twentytwenty/twentytwenty.css') }}" rel="stylesheet" />
+<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+
+</head>
+<body>
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Topbar Start -->
+
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="m-0 text-primary"><i class="fa fa-award me-2"></i>IRT Evaluator</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0">
+                <a href="#" class="nav-item nav-link">View this in your mobile on <b>{{url}}</b></a>
+                <a href="#" class="nav-item nav-link active">Logged in : <b>{{data}}</b></a>
+            </div>
+            
+        </div>
+    </nav>
+<div class="container-fluid bg-primary py-5 hero-header mb-5">
+        <div class="row py-3">
+            <div class="col-12 text-center">
+                <h1 class="display-3 text-white animated zoomIn">List of Items added to the database</h1>
+            </div>
+        </div>
+    </div>
+
+<style>
+#customers tr:hover {background-color: #ddd;}
+#responses {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#responses td, #responses th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#responses tr:nth-child(even){background-color: #f2f2f2;}
+
+#responses tr:hover {background-color: #ddd;}
+
+#responses th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+</style>
+ <div class="container-fluid py-5">
+        <div class="container">
+          <center><h1 class="display-5 mb-0">Add/Update Item</h1></center>
+          <div class="row">
+          <div class="col-xl-3 col-lg-3"></div>
+<div class="col-xl-6 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+
+                    <form action="{{url_for('addorupdateitem',id = '0')}}" method='post'>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <input type="number" name= "itemid" class="form-control border-0 bg-light px-4" placeholder="ID" style="height: 55px;" value="{{selected['ID']}}">
+                            </div>
+                            <div class="col-12">
+                                <input type="number" step="0.01" name = "aval" class="form-control border-0 bg-light px-4" placeholder="Value of a" style="height: 55px;" value="{{selected['a']}}">
+                            </div>
+                            <div class="col-12">
+                                <input type="number" step="0.01" name = "bval" class="form-control border-0 bg-light px-4" placeholder="Value of b" style="height: 55px;" value="{{selected['b']}}">
+                            </div>
+
+                            <div class="col-12">
+                                <input type="number" step="0.01" name = "cval" class="form-control border-0 bg-light px-4" placeholder="Value of c" style="height: 55px;" value="{{selected['c']}}">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" name = "title" class="form-control border-0 bg-light px-4" placeholder="Item description" style="height: 55px;" value="{{selected['d']}}">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" name = "answer" class="form-control border-0 bg-light px-4" placeholder="Answer Key" style="height: 55px;" value="{{selected['answer']}}">
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit" name="submit">Add/Update</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+</div>
+
+
+
+
+  
+
+<style>
+.tabless{
+  border-collapse: collapse;
+  border:2px solid #444444;
+  width:100%;
+  border-radius: 10px;
+  overflow-x: scroll;
+  
+}
+.tabless th{
+  background-color: #444444;
+  padding: 15px;
+  color: #fff;
+  border:1px solid #fff;
+  text-align: center;
+}
+.tabless td{
+  background-color: #fff;
+  padding: 15px;
+  color: #428bca;
+  border:1px solid #444;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.tabless tr:hover{
+  background-color: #ddd;
+}
+
+</style>
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+          <center>
+<h2> View the Items List Below </h2>
+  <br>
+  <h3><i class="fa fa-plus-square" aria-hidden="true"></i> = Update ||  <i class="fa fa-trash" aria-hidden="true"></i> = Delete </h3>
+           <table class="tabless" >
+       <tr>
+  <th>Sl.No</th>
+    <th>Title</th>
+    <th>a</th>
+  <th>b</th>
+  <th>c</th>
+  <th>Answer</th>
+  <th>Action</th>
+  </tr>
+  {% for row in sql_table %}
+<tr>
+  <td>{{ row.ID }}</td>
+  <td>{{ row.d }}</td>
+  <td>{{ row.a }}</td>
+  <td>{{ row.b }}</td>
+  <td>{{ row.c }}</td>
+  <td>{{ row.answer }}</td>
+  
+  <td><a href="{{url_for('addorupdateitem',id = row.ID)}}"><button class="btn btn-primary w-100 py-3"><i class="fa fa-plus-square" aria-hidden="true"></i></button></a><a href="delete-product.php?pid=<?php echo htmlentities($result['id']);?>" onClick="return confirm('Are you sure you want to delete?')"><button class="btn btn-primary w-100 py-3"><i class="fa fa-trash" aria-hidden="true"></i></button></a></td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+
+
+
+
+ 
+     
+        <div class="container-fluid text-light py-4" style="background: #051225;">
+        <div class="container">
+            <div class="row g-0">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy; <a class="text-white border-bottom" href="#">IRT</a>. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0">Designed by <a class="text-white border-bottom" href="https://htmlcodex.com">Ideonix Solutions</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/wow/wow.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/tempusdominus/js/moment.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/tempusdominus/js/moment-timezone.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/twentytwenty/jquery.event.move.js')}}"></script>
+    <script src="{{ url_for('static', filename='lib/twentytwenty/jquery.twentytwenty.js')}}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ url_for('static', filename='js/main.js')}}"></script>
+    </body>
+</html>
